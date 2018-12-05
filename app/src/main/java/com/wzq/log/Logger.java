@@ -1,9 +1,9 @@
-package com.zyp.log;
+package com.wzq.log;
 
 import android.util.Log;
 
-import com.zyp.app.AppConfig;
-import com.zyp.util.CommonUtil;
+import com.wzq.app.AppConfig;
+import com.wzq.util.CommonUtil;
 
 /**
  * Created by zhangyipeng on 2017/6/15.

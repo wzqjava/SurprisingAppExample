@@ -1,12 +1,10 @@
-package com.zyp.util;
+package com.wzq.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.zyp.app.MyApplication;
-import com.zyp.log.Logger;
+import com.wzq.app.MyApplication;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;

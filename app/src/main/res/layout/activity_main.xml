@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.zyp.ui.activity.MainActivity">
+    tools:context="com.wzq.ui.activity.MainActivity">
 
     <LinearLayout
         android:orientation="vertical"

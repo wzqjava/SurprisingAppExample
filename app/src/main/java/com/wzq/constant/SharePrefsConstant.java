@@ -1,6 +1,4 @@
-package com.zyp.constant;
-
-import android.content.SharedPreferences;
+package com.wzq.constant;
 
 /**
  * Created by zhangyipeng on 2017/6/15.

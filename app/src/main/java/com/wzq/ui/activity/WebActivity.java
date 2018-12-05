@@ -1,9 +1,9 @@
-package com.zyp.ui.activity;
+package com.wzq.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.zyp.R;
+import com.wzq.R;
 
 public class WebActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
-package com.zyp.app;
+package com.wzq.app;
 
-import com.zyp.BuildConfig;
+import com.wzq.BuildConfig;
 
 /**
  * Created by zhangyipeng on 2017/6/15.

@@ -1,21 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+//如果有很多项目，可以设置全局来统一管理版本号或依赖库，根目录下build.gradle下
 ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "25.0.3"
-    minSdkVersion = 15
-    targetSdkVersion = 22
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.0"
+    minSdkVersion = 16
+    targetSdkVersion = 28
     versionCode = 1
     versionName = "1.0.0"
 
-    espressoCore = "2.2.2"
+    espressoCore = "3.0.2"
     junit = "4.12"
-    constraintLayout = "1.0.2"
+    constraintLayout = "1.1.3"
     customactivityoncrash = "1.5.0"
     leakcanaryVersion = "1.5.1"
-    appcompatV7 = "25.3.1"
-    design = "25.3.1"
-    supportVectorDrawable = "25.3.1"
+    appcompatV7 = "28.0.0"
+    design = "28.0.0"
+    supportVectorDrawable = "28.0.0"
 
 }
 
@@ -25,9 +25,12 @@ buildscript {
         jcenter()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        //Freeline是由阿里巴巴蚂蚁聚宝Android团队开发的一款针对Android平台的增量编译工具，它可以充分利用缓存文件，
+        // 在几秒钟内迅速地对代码的改动进行编译并部署到设备上，有效地减少了日常开发中的大量重新编译与安装的耗时。
         classpath 'com.antfortune.freeline:gradle:0.8.7'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -38,6 +41,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 

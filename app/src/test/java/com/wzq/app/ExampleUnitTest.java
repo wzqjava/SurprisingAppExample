@@ -1,4 +1,4 @@
-package com.zyp.app;
+package com.wzq.app;
 
 import org.junit.Test;
 

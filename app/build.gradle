@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.antfortune.freeline'
+apply plugin: 'com.antfortune.freeline' //  阿里Android团队一款针对Android平台的增量编译工具
 
 android {
     //国内镜像地址来下载  $ ./gradlew initFreeline -Pmirror
@@ -9,7 +9,7 @@ android {
     }
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "com.zyp"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -23,7 +23,7 @@ android {
 
         buildConfigField "String", "BUILD_TIME", "\"${buildTime()}\"" // 输出2017-06-16 11:46:42
         buildConfigField "String", "BUILD_HOST", "\"${hostName()}\""
-// 输出zhangyipeng@localhost，这是我的电脑的用户名和PC名
+        // 输出zhangyipeng@localhost，这是我的电脑的用户名和PC名
         buildConfigField "String", "LASR_GIT_COMMIT_SHA", "\"${revision()}\""
         // 输出9def3d3, 这是最后一次commit的sha值
 
@@ -36,6 +36,7 @@ android {
          * getString(R.string.build_host)  // 输出zhangyipeng@localhost，这是我的电脑的用户名和PC名
          * getString(R.string.build_git_revision) // 输出9def3d3, 这是最后一次commit的sha值
          */
+        flavorDimensions "versionCode"
     }
 
     signingConfigs {
@@ -112,7 +113,7 @@ android {
                 } else if (variant.buildType.name.equals('debug')) {
                     fileName = "zyp_v${defaultConfig.versionName}_${variant.productFlavors[0].name}_debug.apk"
                 }
-                output.outputFile = new File(outputFile.parent, fileName)
+//                output.outputFile = new File(outputFile.parent, fileName)
                 println "====>${fileName}"
 
             }
@@ -146,7 +147,8 @@ android {
         //		vivo{}
     }
 
-    productFlavors.all { flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
 
     }
 
@@ -189,23 +191,24 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile("com.android.support.test.espresso:espresso-core:${espressoCore}", {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${espressoCore}", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile "junit:junit:${junit}"
+    testImplementation "junit:junit:${junit}"
 
-    compile "com.android.support:appcompat-v7:${appcompatV7}"
-    compile "com.android.support.constraint:constraint-layout:${constraintLayout}"
-    compile "com.android.support:design:${design}"
-    compile "com.android.support:support-vector-drawable:${supportVectorDrawable}"
+    implementation "com.android.support:appcompat-v7:${appcompatV7}"
+    implementation "com.android.support.constraint:constraint-layout:${constraintLayout}"
+    implementation "com.android.support:design:${design}"
+    implementation "com.android.support:support-vector-drawable:${supportVectorDrawable}"
+    // Crash全局异常捕获，用到了一个第三方库
+    implementation "cat.ereza:customactivityoncrash:${customactivityoncrash}"
 
-    compile "cat.ereza:customactivityoncrash:${customactivityoncrash}"
-
-    debugCompile "com.squareup.leakcanary:leakcanary-android:${leakcanaryVersion}"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //  引入的版本变量在root的build.gradle文件中;
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanaryVersion}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 
 task upload(type: Exec) {
@@ -219,12 +222,7 @@ task uploadpython(type: Exec) {
 }
 
 
-task compliePre1 {
-    println "============compliePre1============="
-}
-task compliePre2 {
-    println "============compliePre2============="
-}
+
 
 afterEvaluate {//编译前执行
     tasks.matching {
@@ -248,9 +246,9 @@ afterEvaluate {
         println "============buildApkDebug============="
 
     }
-    tasks.findByName('assembleRelease').doLast {
-        println "============buildApkRelease============="
-    }
+//    tasks.findByName('assembleRelease').doLast {
+//        println "============buildApkRelease============="
+//    }
 }
 
 
@@ -271,9 +269,11 @@ def revision() {
     return code.toString().trim()
 }
 
-
-
-task hello << {// <<符号是doLast的缩写
+/**
+ * 我们创建了一个Task对象，同时把closure做为一个action加到这个Task的action队列中，
+ * 并且告诉它“最后才执行这个closure”（注意，<<符号是doLast的代表）。
+ */
+task hello << {// <<符号是doLast的缩写,
     println 'Hello Earth'
 }
 hello.doFirst {
@@ -284,4 +284,10 @@ hello.doLast {
 }
 hello << {
     println 'Hello Jupiter'
+}
+task compliePre1 {
+    println "============compliePre1============="
+}
+task compliePre2 {
+    println "============compliePre2============="
 }

@@ -1,13 +1,12 @@
-package com.zyp.util;
+package com.wzq.util;
 
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.zyp.app.MyApplication;
+import com.wzq.app.MyApplication;
 
 import java.io.File;
 

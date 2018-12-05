@@ -1,4 +1,4 @@
-package com.zyp.debug;
+package com.wzq.debug;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
-import com.zyp.R;
-import com.zyp.app.AppConfig;
-import com.zyp.app.MyApplication;
-import com.zyp.constant.SharePrefsConstant;
-import com.zyp.log.Logger;
-import com.zyp.ui.activity.SplashActivity;
-import com.zyp.util.SPUtils;
+import com.wzq.R;
+import com.wzq.app.AppConfig;
+import com.wzq.app.MyApplication;
+import com.wzq.constant.SharePrefsConstant;
+import com.wzq.log.Logger;
+import com.wzq.ui.activity.SplashActivity;
+import com.wzq.util.SPUtils;
 
 public class DebugActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 

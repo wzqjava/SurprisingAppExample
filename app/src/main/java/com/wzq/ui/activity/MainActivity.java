@@ -1,10 +1,7 @@
-package com.zyp.ui.activity;
+package com.wzq.ui.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.zyp.BuildConfig;
-import com.zyp.R;
-import com.zyp.app.AppConfig;
-import com.zyp.app.MyApplication;
-import com.zyp.constant.SharePrefsConstant;
-import com.zyp.debug.DebugActivity;
-import com.zyp.log.Logger;
-import com.zyp.util.CommonUtil;
-import com.zyp.util.FileUtils;
-import com.zyp.util.SPUtils;
+import com.wzq.BuildConfig;
+import com.wzq.R;
+import com.wzq.app.AppConfig;
+import com.wzq.app.MyApplication;
+import com.wzq.constant.SharePrefsConstant;
+import com.wzq.debug.DebugActivity;
+import com.wzq.log.Logger;
+import com.wzq.util.CommonUtil;
+import com.wzq.util.SPUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

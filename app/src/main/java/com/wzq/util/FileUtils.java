@@ -1,4 +1,4 @@
-package com.zyp.util;
+package com.wzq.util;
 
 import android.text.TextUtils;
 

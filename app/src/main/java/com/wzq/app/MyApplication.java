@@ -1,4 +1,4 @@
-package com.zyp.app;
+package com.wzq.app;
 
 import android.app.Activity;
 import android.app.Application;
@@ -8,9 +8,10 @@ import android.os.StrictMode;
 import android.text.TextUtils;
 
 import com.squareup.leakcanary.LeakCanary;
-import com.zyp.constant.SharePrefsConstant;
-import com.zyp.util.CommonUtil;
-import com.zyp.util.SPUtils;
+import com.wzq.constant.SharePrefsConstant;
+import com.wzq.log.Logger;
+import com.wzq.util.CommonUtil;
+import com.wzq.util.SPUtils;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -20,6 +21,8 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 
 /**
  * Created by zhangyipeng on 2017/6/15.
+ * 开发一个优秀的Android应用你必须要加入的代码及配置
+ * https://www.jianshu.com/p/cdc24240f3ca
  */
 
 public class MyApplication extends Application {
@@ -59,6 +62,11 @@ public class MyApplication extends Application {
 
         /**crash异常捕获*/
         if (AppConfig.IS_DEBUG) {
+            /**
+             * 引入Crash全局异常捕获，用到了一个第三方库,使用方法如下：
+             * compile 'cat.ereza:customactivityoncrash:1.5.0'
+             */
+
             CustomActivityOnCrash.install(this);
         }
 
@@ -74,6 +82,7 @@ public class MyApplication extends Application {
             if (LeakCanary.isInAnalyzerProcess(this)) {
                 return;
             }
+
             LeakCanary.install(this);
         }
     }
@@ -134,6 +143,7 @@ public class MyApplication extends Application {
                     }
                     if (mActivitys.contains(activity)) {
                         mActivitys.remove(activity);
+                        Logger.e("wzq","删除了当前activity"+activity.getLocalClassName());
                     }
                 }
             });

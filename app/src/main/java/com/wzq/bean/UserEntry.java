@@ -1,4 +1,4 @@
-package com.zyp.bean;
+package com.wzq.bean;
 
 /**
  * Created by zhangyipeng on 2017/6/15.
