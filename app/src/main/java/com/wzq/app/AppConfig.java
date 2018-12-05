@@ -14,6 +14,7 @@ public class AppConfig {
     public final static String APPLICATION_ID = BuildConfig.APPLICATION_ID;
     public final static int VERSION_CODE = BuildConfig.VERSION_CODE;
     public final static boolean IS_LOG = BuildConfig.IS_LOG;
+    //用AppConfig类再封装一层,直接使用BuildConfig.DEBUG,容易导错包,(比如design包的BuildConfig.DEBUG=false)
     public final static boolean IS_DEBUG = BuildConfig.IS_DEBUG;
     public final static String[] BASE_TEST_URL = BuildConfig.BASE_TEST_URL;
 

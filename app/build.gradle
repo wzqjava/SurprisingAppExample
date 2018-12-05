@@ -2,16 +2,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.antfortune.freeline' //  阿里Android团队一款针对Android平台的增量编译工具
 
 android {
-    //国内镜像地址来下载  $ ./gradlew initFreeline -Pmirror
+    /**
+     * 阿里Android团队一款针对Android平台的增量编译工具
+     * 国内镜像地址来下载  $ ./gradlew initFreeline -Pmirror
+     */
+
     freeline {
         hack true
-        productFlavor 'zyp'
+        productFlavor 'wzq'
     }
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.zyp"
+        applicationId "com.wzq"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -72,6 +76,7 @@ android {
             buildConfigField "String", "BASE_URL", "\"${debug_base_url}\""
             buildConfigField "String[]", "BASE_TEST_URL", "{\"https://api.test\", \"https://api.test1\", \"https://api.test2\", \"https://api.test3\", \"https://api.test4\"}"
             buildConfigField "boolean", "IS_LOG", "true"
+            //BuildConfig这个类进行访问IS_DEBUG属性,从而让程序在degub和release下动态控制log等信息;
             buildConfigField "boolean", "IS_DEBUG", "true"
 
             debuggable true
@@ -89,6 +94,7 @@ android {
 
             buildConfigField "String", "BASE_URL", "\"${release_base_url}\""
             buildConfigField "String[]", "BASE_TEST_URL", "{\"https://api.release1\", \"https://api.release2\"}"
+            //BuildConfig这个类进行访问IS_LOG属性
             buildConfigField "boolean", "IS_LOG", "false"
             buildConfigField "boolean", "IS_DEBUG", "false"
 
@@ -228,7 +234,7 @@ afterEvaluate {//编译前执行
     tasks.matching {
         it.name.startsWith('process') && (it.name.endsWith('ReleaseJavaRes') || it.name.endsWith
                 ('DebugJavaRes'))
-    }.each { task ->
+    }.each { task -> // 闭包 ,这个箭头很关键。箭头前面是参数定义，箭头后面是代码
         task.dependsOn(compliePre1, compliePre2)
     }
 }
